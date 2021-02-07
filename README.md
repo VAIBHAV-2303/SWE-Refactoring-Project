@@ -23,4 +23,4 @@ Viewing the Scoreboard : The scoreboard keeps track of the score gained by each 
 
 Maintenance Call : This is essentially a simulation of some repair work – ball not returned, pinsetter did not re-rack, etc.– that is to take place for a particular lane. The game play is halted for the time the lane is being repaired.
 
-##### NOTE: in bowler.java put the absolute path of BOWLERS.DAT file. 
+##### **NOTE: in bowler.java put the absolute path of BOWLERS.DAT file. 
