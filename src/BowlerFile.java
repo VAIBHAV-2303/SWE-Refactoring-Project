@@ -22,7 +22,7 @@
 import java.util.*;
 import java.io.*;
 
-class BowlerFile {
+class BowlerFile implements BowlerDataInterface{
 
 	/** The location of the bowelr database */
 	private static String BOWLER_DAT = "/mnt/sdb2/IIITH/SEM4/SE/Project/src/BOWLERS.DAT";

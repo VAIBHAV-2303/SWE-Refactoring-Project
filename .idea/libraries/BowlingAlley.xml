@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="BowlingAlley">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/BowlingAlley.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

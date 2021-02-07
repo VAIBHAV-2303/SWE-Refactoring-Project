@@ -9,7 +9,7 @@
 import java.util.*;
 import java.io.*;
 
-public class ScoreHistoryFile {
+public class ScoreHistoryFile implements ScoreHistoryDataInterface{
 
 	private static String SCOREHISTORY_DAT = "SCOREHISTORY.DAT";
 
