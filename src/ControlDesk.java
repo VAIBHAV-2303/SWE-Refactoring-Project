@@ -68,15 +68,11 @@ class ControlDesk extends Thread {
 		this.numLanes = numLanes;
 		lanes = new HashSet(numLanes);
 		partyQueue = new Queue();
-
 		subscribers = new Vector();
-
 		for (int i = 0; i < numLanes; i++) {
 			lanes.add(new Lane());
 		}
-		
 		this.start();
-
 	}
 	
 	/**
@@ -215,13 +211,7 @@ class ControlDesk extends Thread {
 
 	public void publish(ControlDeskEvent event) {
 		Iterator eventIterator = subscribers.iterator();
-		while (eventIterator.hasNext()) {
-			(
-				(ControlDeskObserver) eventIterator
-					.next())
-					.receiveControlDeskEvent(
-				event);
-		}
+		while (eventIterator.hasNext()) ((ControlDeskObserver) eventIterator.next()).receiveControlDeskEvent(event);
 	}
 
     /**

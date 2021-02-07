@@ -1,6 +1,6 @@
 /**
  * 
- * SMTP implementation based on code by Réal Gagnon mailto:real@rgagnon.com
+ * SMTP implementation based on code by Rï¿½al Gagnon mailto:real@rgagnon.com
  * 
  */
 
@@ -9,14 +9,13 @@ import java.io.*;
 import java.util.Vector;
 import java.util.Iterator;
 import java.net.*;
-import java.awt.*;
 import java.awt.print.*;
 
 public class ScoreReport {
 
 	private String content;
 	
-	public ScoreReport( Bowler bowler, int[] scores, int games ) {
+	public ScoreReport(Bowler bowler, int[] scores, int games ) {
 		String nick = bowler.getNick();
 		String full = bowler.getFullName();
 		Vector v = null;

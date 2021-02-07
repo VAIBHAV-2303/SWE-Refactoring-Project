@@ -2,10 +2,10 @@
  *
  *  Version:
  *			$Id$
- * 
+ *
  *  Revisions:
  * 		$Log$
- * 
+ *
  */
 
 /**
@@ -17,7 +17,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
-import javax.swing.event.*;
 
 import java.util.*;
 
@@ -26,10 +25,10 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 	private JButton addParty, finished, assign;
 	private JFrame win;
 	private JList partyList;
-	
+
 	/** The maximum  number of members in a party */
 	private int maxMembers;
-	
+
 	private ControlDesk controlDesk;
 
 	/**
@@ -87,7 +86,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 		while (it.hasNext()) {
 			Lane curLane = (Lane) it.next();
 			LaneStatusView laneStat = new LaneStatusView(curLane,(laneCount+1));
-			curLane.subscribe(laneStat);
+			curLane.laneSubscribe.subscribe(laneStat);
 			((Pinsetter)curLane.getPinsetter()).subscribe(laneStat);
 			JPanel lanePanel = laneStat.showLane();
 			lanePanel.setBorder(new TitledBorder("Lane" + ++laneCount ));
