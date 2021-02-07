@@ -36,10 +36,10 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 	 *
 	 */
 
-	public ControlDeskView(ControlDesk controlDesk, int maxMembers) {
+	public ControlDeskView(ControlDesk controlDesk) {
 
 		this.controlDesk = controlDesk;
-		this.maxMembers = maxMembers;
+		this.maxMembers = controlDesk.getMaxMembers();
 		int numLanes = controlDesk.getNumLanes();
 
 		win = new JFrame("Control Desk");

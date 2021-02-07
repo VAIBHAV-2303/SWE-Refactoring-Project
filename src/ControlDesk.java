@@ -53,6 +53,9 @@ class ControlDesk extends Thread {
 
 	/** The number of lanes represented */
 	private int numLanes;
+
+	/** Maximum members in a party */
+	private int maxMembers;
 	
 	/** The collection of subscribers */
 	private Vector subscribers;
@@ -64,8 +67,9 @@ class ControlDesk extends Thread {
      *
      */
 
-	public ControlDesk(int numLanes) {
+	public ControlDesk(int numLanes, int maxMembers) {
 		this.numLanes = numLanes;
+		this.maxMembers = maxMembers;
 		lanes = new HashSet(numLanes);
 		partyQueue = new Queue();
 		subscribers = new Vector();
@@ -223,5 +227,9 @@ class ControlDesk extends Thread {
 
 	public HashSet getLanes() {
 		return lanes;
+	}
+
+	public int getMaxMembers() {
+		return maxMembers;
 	}
 }
