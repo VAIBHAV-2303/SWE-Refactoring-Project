@@ -1,5 +1,11 @@
 # SWE-Project
 
+## Product Overview:
+The Bowling Alley simulation application is a software which aims to automate the workflow of
+a typical Bowling Alley. It is a fairly complete application in itself as it provides an interface for
+a new bowler registration up till the final score-report after a party has ended their game. It
+has been developed entirely using Java and some important features of the product are as
+follows:
 
 ## Feature:
 
