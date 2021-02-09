@@ -1,0 +1,4 @@
+EndGameReport	[EndGameReport::java.util.Vector retVal, EndGameReport::int result, EndGameReport::getResult():java.util.Vector]
+Lane	[Lane::java.util.Vector<LaneObserver> subscribers, Lane::unsubscribe(LaneObserver):void, Lane::publish(LaneEvent):void]
+LaneView	[LaneView::javax.swing.JFrame frame, LaneView::show():void, LaneView::hide():void]
+PinSetterView	[PinSetterView::javax.swing.JFrame frame, PinSetterView::show():void, PinSetterView::hide():void]
