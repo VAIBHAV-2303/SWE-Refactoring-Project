@@ -276,7 +276,7 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 			while (scoreIt.hasNext()){
 				Bowler thisBowler = (Bowler)scoreIt.next();
 				ScoreReport sr = new ScoreReport(thisBowler,
-						finalScores[myIndex = myIndex + 1],
+						finalScores[myIndex++],
 						gameNumber);
 				sr.sendEmail(thisBowler.getEmail());
 				Iterator printIt = printVector.iterator();
