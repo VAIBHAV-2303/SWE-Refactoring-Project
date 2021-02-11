@@ -34,7 +34,7 @@ public class Bowler {
   	email = mail;
     }
 
-
+    //getters for bowler info
     public String getNickName() {
 
         return nickName;  
