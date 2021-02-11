@@ -14,7 +14,7 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 
 	private JPanel jp;
 
-	private JLabel curBowler,pinsDown;
+	private JLabel curBowler,foul,pinsDown;
 	private JButton viewLane;
 	private JButton viewPinSetter, maintenance;
 
@@ -46,8 +46,8 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 		jp.setLayout(new FlowLayout());
 		JLabel cLabel = new JLabel( "Now Bowling: " );
 		curBowler = new JLabel( "(no one)" );
-		//JLabel fLabel = new JLabel( "Foul: " );
-		//foul = new JLabel( " " );
+		JLabel fLabel = new JLabel( "Foul: " );
+		foul = new JLabel( " " );
 		JLabel pdLabel = new JLabel( "Pins Down: " );
 		pinsDown = new JLabel( "0" );
 
