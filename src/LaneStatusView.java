@@ -100,33 +100,27 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 	}
 
 	public void actionPerformed( ActionEvent e ) {
-		if ( lane.isPartyAssigned() ) { 
-			if (e.getSource().equals(viewPinSetter)) {
-				if ( psShowing == false ) {
-					psv.show();
-					psShowing=true;
-				} else if ( psShowing == true ) {
-					psv.hide();
-					psShowing=false;
-				}
+		if ( (lane.isPartyAssigned()) && (e.getSource().equals(viewPinSetter))) {
+			 if (psShowing == false) {
+				psv.show();
+				psShowing = true;
+			} else if (psShowing) {
+				psv.hide();
+				psShowing = false;
 			}
 		}
-		if (e.getSource().equals(viewLane)) {
-			if ( lane.isPartyAssigned() ) { 
-				if ( laneShowing == false ) {
-					lv.show();
-					laneShowing=true;
-				} else if ( laneShowing == true ) {
-					lv.hide();
-					laneShowing=false;
-				}
+		if (e.getSource().equals(viewLane) && (lane.isPartyAssigned())) {
+			 if (laneShowing == false) {
+				lv.show();
+				laneShowing = true;
+			} else if (laneShowing) {
+				lv.hide();
+				laneShowing = false;
 			}
 		}
-		if (e.getSource().equals(maintenance)) {
-			if ( lane.isPartyAssigned() ) {
+		if (e.getSource().equals(maintenance) && (lane.isPartyAssigned())) {
 				lane.unPauseGame();
 				maintenance.setBackground( Color.GREEN );
-			}
 		}
 	}
 
@@ -134,7 +128,7 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 		curBowler.setText( ( (Bowler)le.getBowler()).getNickName() );
 		if ( le.isMechanicalProblem() ) {
 			maintenance.setBackground( Color.RED );
-		}	
+		}
 		if ( lane.isPartyAssigned() == false ) {
 			viewLane.setEnabled( false );
 			viewPinSetter.setEnabled( false );
