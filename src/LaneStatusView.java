@@ -21,10 +21,10 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 	private PinSetterView psv;
 	private LaneView lv;
 	private Lane lane;
-	int laneNum;
+	private int laneNum;
 
-	boolean laneShowing;
-	boolean psShowing;
+	private boolean laneShowing;
+	private boolean psShowing;
 
 	public LaneStatusView(Lane lane, int laneNum ) {
 
