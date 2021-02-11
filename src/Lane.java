@@ -142,7 +142,6 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 
 	private Party party;
 	private Pinsetter setter;
-	private HashMap scores;
 
 	private boolean gameIsHalted;
 
@@ -154,11 +153,13 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 	private int frameNumber;
 	private boolean tenthFrameStrike;
 
+	private HashMap scores;
 	private int[] curScores;
 	private int[][] cumulScores;
+	private int[][] finalScores;
+
 	private boolean canThrowAgain;
 
-	private int[][] finalScores;
 	private int gameNumber;
 
 	private Bowler currentThrower;			// = the thrower who just took a throw
@@ -629,6 +630,4 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 		party = null;
 
 	}
-
-
 }
