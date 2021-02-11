@@ -32,7 +32,7 @@ import javax.swing.border.*;
 import javax.swing.event.*;
 
 import java.util.*;
-//import java.text.*;
+import java.text.*;
 
 /**
  * Constructor for GUI used to Add Parties to the waiting party queue.
