@@ -1,6 +1,7 @@
 /**
  * 
  * SMTP implementation based on code by R�al Gagnon mailto:real@rgagnon.com
+ Score reports through email and printouts
  * 
  */
 
