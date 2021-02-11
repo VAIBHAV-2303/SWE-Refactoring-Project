@@ -57,32 +57,13 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 
 		//Insets buttonMargin = new Insets(4, 4, 4, 4);
 
-		viewLane = new JButton("View Lane");
-		JPanel viewLanePanel = new JPanel();
-		viewLanePanel.setLayout(new FlowLayout());
-		viewLane.addActionListener(this);
-		viewLanePanel.add(viewLane);
-
-		viewPinSetter = new JButton("Pinsetter");
-		JPanel viewPinSetterPanel = new JPanel();
-		viewPinSetterPanel.setLayout(new FlowLayout());
-		viewPinSetter.addActionListener(this);
-		viewPinSetterPanel.add(viewPinSetter);
-
-		maintenance = new JButton("     ");
+		viewLane = ViewUtils.createAndAddPanel("View Lane", this, buttonPanel);
+		viewPinSetter = ViewUtils.createAndAddPanel("Pinsetter", this, buttonPanel);
+		maintenance = ViewUtils.createAndAddPanel("     ", this, buttonPanel);
 		maintenance.setBackground( Color.GREEN );
-		JPanel maintenancePanel = new JPanel();
-		maintenancePanel.setLayout(new FlowLayout());
-		maintenance.addActionListener(this);
-		maintenancePanel.add(maintenance);
 
 		viewLane.setEnabled( false );
 		viewPinSetter.setEnabled( false );
-
-
-		buttonPanel.add(viewLanePanel);
-		buttonPanel.add(viewPinSetterPanel);
-		buttonPanel.add(maintenancePanel);
 
 		jp.add( cLabel );
 		jp.add( curBowler );
@@ -100,27 +81,33 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 	}
 
 	public void actionPerformed( ActionEvent e ) {
-		if ( (lane.isPartyAssigned()) && (e.getSource().equals(viewPinSetter))) {
-			 if (psShowing == false) {
-				psv.show();
-				psShowing = true;
-			} else if (psShowing) {
-				psv.hide();
-				psShowing = false;
+		if ( lane.isPartyAssigned() ) { 
+			if (e.getSource().equals(viewPinSetter)) {
+				if ( psShowing == false ) {
+					psv.show();
+					psShowing=true;
+				} else if ( psShowing == true ) {
+					psv.hide();
+					psShowing=false;
+				}
 			}
 		}
-		if (e.getSource().equals(viewLane) && (lane.isPartyAssigned())) {
-			 if (laneShowing == false) {
-				lv.show();
-				laneShowing = true;
-			} else if (laneShowing) {
-				lv.hide();
-				laneShowing = false;
+		if (e.getSource().equals(viewLane)) {
+			if ( lane.isPartyAssigned() ) { 
+				if ( laneShowing == false ) {
+					lv.show();
+					laneShowing=true;
+				} else if ( laneShowing == true ) {
+					lv.hide();
+					laneShowing=false;
+				}
 			}
 		}
-		if (e.getSource().equals(maintenance) && (lane.isPartyAssigned())) {
+		if (e.getSource().equals(maintenance)) {
+			if ( lane.isPartyAssigned() ) {
 				lane.unPauseGame();
 				maintenance.setBackground( Color.GREEN );
+			}
 		}
 	}
 
@@ -128,7 +115,7 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 		curBowler.setText( ( (Bowler)le.getBowler()).getNickName() );
 		if ( le.isMechanicalProblem() ) {
 			maintenance.setBackground( Color.RED );
-		}
+		}	
 		if ( lane.isPartyAssigned() == false ) {
 			viewLane.setEnabled( false );
 			viewPinSetter.setEnabled( false );

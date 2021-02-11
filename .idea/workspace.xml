@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9363771-e913-41f7-80a2-aa3fabb1cef6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BowlerFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BowlerFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ControlDesk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ControlDesk.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SCOREHISTORY.DAT" beforeDir="false" afterPath="$PROJECT_DIR$/SCOREHISTORY.DAT" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AddPartyView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AddPartyView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ControlDeskView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ControlDeskView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LaneStatusView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LaneStatusView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LaneView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LaneView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PinSetterView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PinSetterView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NewPatronView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NewPatronView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

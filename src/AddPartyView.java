@@ -53,9 +53,9 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 
 	private String selectedNick, selectedMember;
 
-	public AddPartyView(ControlDeskView controlDesk, int max) {
+	public AddPartyView(ControlDeskView controlDeskview, int max) {
 
-		this.controlDesk = controlDesk;
+		this.controlDesk = controlDeskview;
 		maxSize = max;
 
 		win = new JFrame("Add Party");
@@ -108,34 +108,10 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 
 		Insets buttonMargin = new Insets(4, 4, 4, 4);
 
-		addPatron = new JButton("Add to Party");
-		JPanel addPatronPanel = new JPanel();
-		addPatronPanel.setLayout(new FlowLayout());
-		addPatron.addActionListener(this);
-		addPatronPanel.add(addPatron);
-
-		remPatron = new JButton("Remove Member");
-		JPanel remPatronPanel = new JPanel();
-		remPatronPanel.setLayout(new FlowLayout());
-		remPatron.addActionListener(this);
-		remPatronPanel.add(remPatron);
-
-		newPatron = new JButton("New Patron");
-		JPanel newPatronPanel = new JPanel();
-		newPatronPanel.setLayout(new FlowLayout());
-		newPatron.addActionListener(this);
-		newPatronPanel.add(newPatron);
-
-		finished = new JButton("Finished");
-		JPanel finishedPanel = new JPanel();
-		finishedPanel.setLayout(new FlowLayout());
-		finished.addActionListener(this);
-		finishedPanel.add(finished);
-
-		buttonPanel.add(addPatronPanel);
-		buttonPanel.add(remPatronPanel);
-		buttonPanel.add(newPatronPanel);
-		buttonPanel.add(finishedPanel);
+		addPatron = ViewUtils.createAndAddPanel("Add to Party", this, buttonPanel);
+		remPatron = ViewUtils.createAndAddPanel("Remove Member", this, buttonPanel);
+		newPatron = ViewUtils.createAndAddPanel("New Patron", this, buttonPanel);
+		finished = ViewUtils.createAndAddPanel("Finished", this, buttonPanel);
 
 		// Clean up main panel
 		colPanel.add(partyPanel);

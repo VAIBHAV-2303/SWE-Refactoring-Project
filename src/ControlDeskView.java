@@ -54,26 +54,9 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 		controlsPanel.setLayout(new GridLayout(3, 1));
 		controlsPanel.setBorder(new TitledBorder("Controls"));
 
-		addParty = new JButton("Add Party");
-		JPanel addPartyPanel = new JPanel();
-		addPartyPanel.setLayout(new FlowLayout());
-		addParty.addActionListener(this);
-		addPartyPanel.add(addParty);
-		controlsPanel.add(addPartyPanel);
-
-		assign = new JButton("Assign Lanes");
-		JPanel assignPanel = new JPanel();
-		assignPanel.setLayout(new FlowLayout());
-		assign.addActionListener(this);
-		assignPanel.add(assign);
-//		controlsPanel.add(assignPanel);
-
-		finished = new JButton("Finished");
-		JPanel finishedPanel = new JPanel();
-		finishedPanel.setLayout(new FlowLayout());
-		finished.addActionListener(this);
-		finishedPanel.add(finished);
-		controlsPanel.add(finishedPanel);
+		addParty = ViewUtils.createAndAddPanel("Add Party", this, controlsPanel);
+//		assign = ViewUtils.createAndAddPanel("Assign Lanes", this, controlsPanel);
+		finished = ViewUtils.createAndAddPanel("Finished", this, controlsPanel);
 
 		// Lane Status Panel
 		JPanel laneStatusPanel = new JPanel();
@@ -87,7 +70,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 			Lane curLane = (Lane) it.next();
 			LaneStatusView laneStat = new LaneStatusView(curLane,(laneCount+1));
 			curLane.laneSubscribe.subscribe(laneStat);
-			((Pinsetter)curLane.getPinsetter()).subscribe(laneStat);
+			(curLane.getPinsetter()).subscribe(laneStat);
 			JPanel lanePanel = laneStat.showLane();
 			lanePanel.setBorder(new TitledBorder("Lane" + ++laneCount ));
 			laneStatusPanel.add(lanePanel);

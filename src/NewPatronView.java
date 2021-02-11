@@ -88,20 +88,8 @@ public class NewPatronView implements ActionListener {
 
 		//Insets buttonMargin = new Insets(4, 4, 4, 4);
 
-		finished = new JButton("Add Patron");
-		JPanel finishedPanel = new JPanel();
-		finishedPanel.setLayout(new FlowLayout());
-		finished.addActionListener(this);
-		finishedPanel.add(finished);
-
-		abort = new JButton("Abort");
-		JPanel abortPanel = new JPanel();
-		abortPanel.setLayout(new FlowLayout());
-		abort.addActionListener(this);
-		abortPanel.add(abort);
-
-		buttonPanel.add(abortPanel);
-		buttonPanel.add(finishedPanel);
+		abort = ViewUtils.createAndAddPanel("Abort", this, buttonPanel);
+		finished = ViewUtils.createAndAddPanel("Add Patron", this, buttonPanel);
 
 		// Clean up main panel
 		colPanel.add(patronPanel, "Center");

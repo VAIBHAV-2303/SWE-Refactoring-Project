@@ -33,7 +33,7 @@ public class LaneView implements LaneObserver, ActionListener {
 
 		this.lane = lane;
 
-		initDone = true;
+		this.initDone = true;
 		frame = new JFrame("Lane " + laneNum + ":");
 		cpanel = frame.getContentPane();
 		cpanel.setLayout(new BorderLayout());
@@ -147,14 +147,7 @@ public class LaneView implements LaneObserver, ActionListener {
 
 				//Insets buttonMargin = new Insets(4, 4, 4, 4);
 
-				maintenance = new JButton("Maintenance Call");
-				JPanel maintenancePanel = new JPanel();
-				maintenancePanel.setLayout(new FlowLayout());
-				maintenance.addActionListener(this);
-				maintenancePanel.add(maintenance);
-
-				buttonPanel.add(maintenancePanel);
-
+				maintenance = ViewUtils.createAndAddPanel("Maintenance Call", this, buttonPanel);
 				cpanel.add(buttonPanel, "South");
 
 				frame.pack();
