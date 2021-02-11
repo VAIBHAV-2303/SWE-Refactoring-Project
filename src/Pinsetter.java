@@ -149,7 +149,7 @@ public class Pinsetter {
 
 		try {
 			Thread.sleep(500);				// pinsetter is where delay will be in a real game
-		} catch (Exception e) {}
+		} catch (Exception e) { e.printStackTrace();}
 
 		sendEvent(count);
 
@@ -170,7 +170,7 @@ public class Pinsetter {
 		
 		try {
 			Thread.sleep(1000);
-		} catch (Exception e) {}
+		} catch (Exception e) { e.printStackTrace(); }
 		
 		sendEvent(-1);
 	}
