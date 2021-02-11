@@ -155,15 +155,15 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 
 	private HashMap scores;
 	private int[] curScores;
-	private int[][] cumulScores;
 	private int[][] finalScores;
 
 	private boolean canThrowAgain;
 
 	private int gameNumber;
 
-	private Bowler currentThrower;			// = the thrower who just took a throw
+	private Bowler currentThrower;	
 
+	private LaneScore scoreHandler;
 
 	/** Lane()
 	 *
@@ -174,7 +174,6 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 	 */
 	public Lane() {
 		setter = new Pinsetter();
-		scores = new HashMap();
 		laneSubscribe = new LaneSubscribe();
 
 		gameIsHalted = false;
@@ -186,6 +185,23 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 
 		this.start();
 	}
+
+	public int getBowlIndex() {
+		return bowlIndex;
+	}
+
+	public int getBall() {
+		return ball;
+	}
+
+	public void setGameStatus(boolean status) {
+		gameFinished = status;
+	}
+
+	public void setFrameNumber(int fn) {
+		frameNumber = fn;
+	}
+
 
 	/** run()
 	 *
@@ -225,6 +241,7 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 			}
 
 			if (frameNumber == 9){
+				int [][] cumulScores = scoreHandler.getCumulScores();
 				finalScores[bowlIndex][gameNumber] = cumulScores[bowlIndex][9];
 				try{
 					Date date = new Date();
@@ -259,7 +276,7 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 
 		// TODO: send record of scores to control desk
 		if (result == 1) {					// yes, want to play again
-			resetScores();
+			scoreHandler.resetScores();
 			resetBowlerIterator();
 
 		} else if (result == 2) {// no, dont want to play another game
@@ -308,7 +325,8 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 	public void receivePinsetterEvent(PinsetterEvent pe) {
 
 		if (pe.pinsDownOnThisThrow() >=  0) {			// this is a real throw
-			markScore(currentThrower, frameNumber + 1, pe.getThrowNumber(), pe.pinsDownOnThisThrow());
+			scoreHandler.markScore(currentThrower, frameNumber + 1, pe.getThrowNumber(), pe.pinsDownOnThisThrow());
+			laneSubscribe.publish( lanePublish() );		
 
 			// next logic handles the ?: what conditions dont allow them another throw?
 			// handle the case of 10th frame first
@@ -355,31 +373,6 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 		bowlerIterator = (party.getMembers()).iterator();
 	}
 
-	/** resetScores()
-	 *
-	 * resets the scoring mechanism, must be called before scoring starts
-	 *
-	 * @pre the party has been assigned
-	 * @post scoring system is initialized
-	 */
-	private void resetScores() {
-
-		Vector members = party.getMembers();
-		for (int j = 0, membersSize = members.size(); j < membersSize; j++) {
-			Object o = members.get(j);
-			int[] toPut = new int[25];
-			for (int i = 0; i != 25; i++) {
-				toPut[i] = -1;
-			}
-			scores.put(o, toPut);
-		}
-
-
-
-		gameFinished = false;
-		frameNumber = 0;
-	}
-
 	/** assignParty()
 	 *
 	 * assigns a party to this lane
@@ -391,37 +384,18 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 	 */
 	public void assignParty( Party theParty ) {
 		party = theParty;
+		scoreHandler = new LaneScore(this, party);
 		resetBowlerIterator();
 		partyAssigned = true;
+		int [][] cumulScores = scoreHandler.getCumulScores();
 
 		curScores = new int[party.getMembers().size()];
 		cumulScores = new int[party.getMembers().size()][10];
 		finalScores = new int[party.getMembers().size()][128]; //Hardcoding a max of 128 games, bite me.
 		gameNumber = 0;
 
-		resetScores();
-	}
-
-	/** markScore()
-	 *
-	 * Method that marks a bowlers score on the board.
-	 *
-	 * @param Cur		The current bowler
-	 * @param frame	The frame that bowler is on
-	 * @param ball		The ball the bowler is on
-	 * @param score	The bowler's score
-	 */
-	private void markScore( Bowler Cur, int frame, int ball, int score ){
-		int[] curScore;
-		int index =  ( (frame - 1) * 2 + ball);
-
-		curScore = (int[]) scores.get(Cur);
-
-
-		curScore[ index - 1] = score;
-		scores.put(Cur, curScore);
-		getScore( Cur, frame );
-		laneSubscribe.publish( lanePublish() );
+		scoreHandler.setCumulScores(cumulScores);
+		scoreHandler.resetScores();
 	}
 
 	/** lanePublish()
@@ -431,7 +405,7 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 	 * @return		The new lane event
 	 */
 	private LaneEvent lanePublish(  ) {
-		LaneEvent laneEvent = new LaneEvent(party, bowlIndex, currentThrower, cumulScores, scores, frameNumber+1, curScores, ball, gameIsHalted);
+		LaneEvent laneEvent = new LaneEvent(party, bowlIndex, currentThrower, scoreHandler.getCumulScores(), scoreHandler.getScores(), frameNumber+1, curScores, ball, gameIsHalted);
 		return laneEvent;
 	}
 
@@ -453,6 +427,7 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 		if (strikeballs == 2){
 			//Add up the strike.
 			//Add the next two balls to the current cumulscore.
+			int [][] cumulScores = scoreHandler.getCumulScores();
 			cumulScores[bowlIndex][i/2] += 10;
 			if(curScore[i+1] != -1) {
 				cumulScores[bowlIndex][i/2] += curScore[i+1] + cumulScores[bowlIndex][(i/2)-1];
@@ -479,6 +454,7 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 					cumulScores[bowlIndex][(i/2)] += curScore[i+4];
 				}
 			}
+			scoreHandler.setCumulScores(cumulScores);
 		} else {
 			return true;
 		}
@@ -489,6 +465,7 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 
 	public void normalThrow(int i, int[] curScore) {
 		//We're dealing with a normal throw, add it and be on our way.
+		int [][] cumulScores = scoreHandler.getCumulScores();
 		if( i%2 == 0 && i < 18){
 			//add his last frame's cumul to this ball, make it this frame's cumul.
 			if ( i/2 == 0 ) {
@@ -515,43 +492,7 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 		if (i/2 == 10 && curScore[i] != -2) {
 			cumulScores[bowlIndex][9] += curScore[i];
 		}
-	}
-
-
-	/** getScore()
-	 *
-	 * Method that calculates a bowlers score
-	 *
-	 * @param Cur		The bowler that is currently up
-	 * @param frame	The frame the current bowler is on
-	 *
-	 * @return			The bowlers total score
-	 */
-	private int getScore( Bowler Cur, int frame) {
-		int[] curScore;
-		int totalScore = 0;
-		curScore = (int[]) scores.get(Cur);
-		for (int i = 0; i != 10; i++){
-			cumulScores[bowlIndex][i] = 0;
-		}
-		int current = 2*(frame - 1)+ball-1;
-		//Iterate through each ball until the current one.
-		for (int i = 0; i != current+2; i++){
-			//Spare:
-			if( i%2 == 1 && curScore[i - 1] + curScore[i] == 10 && i < current - 1 && i < 19){
-				//This ball was a the second of a spare.
-				//Also, we're not on the current ball.
-				//Add the next ball to the ith one in cumul.
-				cumulScores[bowlIndex][(i/2)] += curScore[i+1] + curScore[i];
-			} else if( i < current && i%2 == 0 && curScore[i] == 10  && i < 18){
-				boolean doBreak = firstBallStrike(i, curScore);
-				if (doBreak == true)
-					break;
-			}else {
-				normalThrow(i, curScore);
-			}
-		}
-		return totalScore;
+		scoreHandler.setCumulScores(cumulScores);
 	}
 
 	/** isPartyAssigned()
@@ -624,7 +565,7 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 			System.out.println("Exception is caught" + e);
 		}
 
-		resetScores();
+		scoreHandler.resetScores();
 		resetBowlerIterator();
 		partyAssigned = false;
 		party = null;
