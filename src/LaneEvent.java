@@ -49,11 +49,11 @@ public class LaneEvent {
 		ball = theBall;	
 		mechProb = mechProblem;
 	}
-	
+	//check for maintenance call
 	public boolean isMechanicalProblem() {
 		return mechProb;
 	}
-	
+        //getters for score info of bowlers
 	public int getFrameNum() {
 		return frameNum;
 	}
