@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.print.*;
 import java.awt.geom.*;
 import java.awt.font.*;
-import java.text.*;
+//import java.text.*;
 
 public class PrintableText implements Printable {
 	String text;
