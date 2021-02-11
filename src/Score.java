@@ -17,7 +17,7 @@ public class Score {
 		this.date=date;
 		this.score=score;
     }
-
+    //getters for bowler info and score with date
     public String getNickName() {
         return nick;  
     }
