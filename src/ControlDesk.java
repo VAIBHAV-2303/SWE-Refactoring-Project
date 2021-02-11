@@ -141,7 +141,7 @@ class ControlDesk extends Thread {
 	}
 
     
-     * Creates a party from a Vector of nickNAmes and adds them to the wait queue.
+     /* Creates a party from a Vector of nickNAmes and adds them to the wait queue.
      *
      * @param partyNicks	A Vector of NickNames
      *

@@ -207,11 +207,11 @@ public class PinSetterView implements PinsetterObserver {
     }
     
     public void show() {
-    	frame.SetVisibility(true);
+    	frame.setVisible(true);
     }
 
     public void hide() {
-    	frame.SetVisibility(false);
+    	frame.setVisible(false);
     }
     
     public static void main ( String args [ ] ) {

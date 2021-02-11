@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9363771-e913-41f7-80a2-aa3fabb1cef6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Alley.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BowlerFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BowlerFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ScoreHistoryFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ScoreHistoryFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/drive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/drive.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ControlDesk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ControlDesk.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LaneView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LaneView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PinSetterView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PinSetterView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +25,15 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/BowlingAlley/BowlingAlley/code" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="drive" />
+      <module name="SWE-Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
