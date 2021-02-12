@@ -153,7 +153,6 @@ public class Lane extends Thread implements PinsetterObserver, Serializable {
 	private int frameNumber;
 	private boolean tenthFrameStrike;
 
-	private HashMap scores;
 	private int[] curScores;
 	private int[][] finalScores;
 
